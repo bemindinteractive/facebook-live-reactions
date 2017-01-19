@@ -1158,12 +1158,6 @@ shelljs@^0.7.5:
     interpret "^1.0.0"
     rechoir "^0.6.2"
 
-sleep:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/sleep/-/sleep-5.1.0.tgz#0e0b16205d9f9e3b0a95357744b103e797b4c7c1"
-  dependencies:
-    nan ">=2.0.0"
-
 slice-ansi@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/slice-ansi/-/slice-ansi-0.0.4.tgz#edbf8903f66f7ce2f8eafd6ceed65e264c831b35"

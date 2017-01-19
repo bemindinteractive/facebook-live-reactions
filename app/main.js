@@ -2,7 +2,6 @@ const fs = require('fs')
 const path = require('path')
 const phantom = require('phantom')
 const ejs = require('ejs')
-const sleep = require('sleep').sleep
 
 const getGraphData = require('./graph.js').getGraphData
 

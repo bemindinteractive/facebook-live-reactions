@@ -1,0 +1,22 @@
+{
+  "name": "live-reactions",
+  "version": "1.0.0-SNAPSHOT",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start:renderer": "node --harmony-async-await -r dotenv/config app/main.js",
+    "start:stream": "./app/live.sh",
+    "debug": "node --inspect --harmony-async-await -r dotenv/config app/main.js",
+    "test": "standard"
+  },
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "ejs": "^2.5.5",
+    "isomorphic-fetch": "^2.2.1",
+    "phantom": "^4.0.0",
+    "sleep": "^5.1.0"
+  },
+  "devDependencies": {
+    "standard": "^8.6.0"
+  }
+}

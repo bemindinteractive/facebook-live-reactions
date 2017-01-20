@@ -10,7 +10,7 @@ ffmpeg \
 -loop 1 \
 -f image2 \
 -i output.png \
--i ./app/assets/audio.wav \
+-i ./app/assets/audio.m4a \
 -acodec aac \
 -ac 1 \
 -ar 44100 \

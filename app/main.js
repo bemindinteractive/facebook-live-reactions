@@ -6,17 +6,16 @@ const ejs = require('ejs')
 const getGraphData = require('./graph.js').getGraphData
 
 async function main() {
-  const instance = await phantom.create()
-  const page = await instance.createPage()
-  const templateString = await fs.readFileSync(path.join(__dirname, 'assets', 'index.ejs'), 'utf-8')
+  try {
+    const reactions = await getGraphData()
+    const instance = await phantom.create()
+    const page = await instance.createPage()
+    const templateString = fs.readFileSync(path.join(__dirname, 'assets', 'index.ejs'), 'utf-8')
+    const template = ejs.render(templateString, {reactions: reactions})
 
-  const reactions = await getGraphData()
-  const template = ejs.render(templateString, {reactions: reactions})
-
-  page.property('content', template)
-  page.render('output.png', { format: 'png' })
-
-  console.log(reactions)
+    page.property('content', template)
+    page.render('output.png', { format: 'png' })
+  } catch(e) { throw e }
 }
 
 setInterval(main, 5000)

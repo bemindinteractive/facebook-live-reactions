@@ -7,12 +7,6 @@ const ejs = require('ejs')
 const getGraphData = require('./graph.js').getGraphData
 let reactionsCache = {}
 
-fs.watch(path.join(__dirname, 'assets', 'output.jpeg'), eventType => {
-  if(eventType === 'change') {
-    jetpack.copy(path.join(__dirname, 'assets', 'output.jpeg'), path.join(__dirname, '../', 'output.jpeg'), { overwrite: true })
-  }
-})
-
 async function main() {
   try {
     const reactions = await getGraphData()
@@ -26,7 +20,12 @@ async function main() {
       const template = ejs.render(templateString, {reactions: reactions})
 
       page.property('content', template)
-      page.render(path.join(__dirname, 'assets', 'output.jpeg'), { format: 'jpeg' })
+      page.render('output.tmp.jpeg', { format: 'jpeg' })
+
+      if(jetpack.exists('output.tmp.jpeg')) {
+        jetpack.move('output.tmp.jpeg', 'output.jpeg', { overwrite: true })
+      }
+
       console.log('Page rendered: ', reactions)
     } else {
       console.log('Same reactions: skipping render!')

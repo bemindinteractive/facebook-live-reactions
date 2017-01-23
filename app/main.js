@@ -20,8 +20,9 @@ async function main() {
       const template = ejs.render(templateString, {reactions: reactions})
 
       page.property('content', template)
-      await page.render('output.tmp.jpeg', { format: 'jpeg' })
-      await jetpack.moveAsync('output.tmp.jpeg', 'output.jpeg', { overwrite: true })
+      page.render('output.tmp.jpeg', { format: 'jpeg' }).then(() => {
+        jetpack.move('output.tmp.jpeg', 'output.jpeg', { overwrite: true })
+      })
 
       console.log('Page rendered: ', reactions)
     } else {

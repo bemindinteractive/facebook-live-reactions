@@ -2,7 +2,7 @@ ffmpeg \
 -re -y \
 -loop 1 \
 -f image2 \
--i output.png \
+-i output.jpeg \
 -i ./app/assets/audio.m4a \
 -acodec aac \
 -ac 1 \

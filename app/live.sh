@@ -10,7 +10,7 @@ ffmpeg \
 -b:a 128k \
 -vcodec libx264 \
 -pix_fmt yuv420p \
--vf scale=640:480 \
+-vf scale=1280:720 \
 -r 30 \
 -g 60 \
 -f flv \

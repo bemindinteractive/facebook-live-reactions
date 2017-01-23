@@ -24,10 +24,8 @@ exports.getGraphData = async () => {
     const reactionsRequest = await fetch(`${API_ROOT}/${POST_ID}/reactions?summary=total_count&access_token=${accessToken.access_token}`)
     const reactions = await reactionsRequest.json()
 
-    if(reactions.error) {
-      if(reactions.error.message) {
-        console.log(reactions.error.message)
-      }
+    if(reactions.error && reactions.error.message) {
+      console.log(reactions.error.message)
     }
 
     const reactionGroups = {}

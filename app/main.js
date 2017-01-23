@@ -20,12 +20,9 @@ async function main() {
       const template = ejs.render(templateString, {reactions: reactions})
 
       page.property('content', template)
-      page.render('output.tmp.jpeg', { format: 'jpeg' })
-
-      if(jetpack.exists('output.tmp.jpeg')) {
-        jetpack.move('output.tmp.jpeg', 'output.jpeg', { overwrite: true })
-      }
-
+      await page.render('output.tmp.jpeg', { format: 'jpeg' })
+      await jetpack.moveAsync('output.tmp.jpeg', 'output.jpeg', { overwrite: true })
+      
       console.log('Page rendered: ', reactions)
     } else {
       console.log('Same reactions: skipping render!')

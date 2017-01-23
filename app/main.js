@@ -22,7 +22,7 @@ async function main() {
       page.property('content', template)
       await page.render('output.tmp.jpeg', { format: 'jpeg' })
       await jetpack.moveAsync('output.tmp.jpeg', 'output.jpeg', { overwrite: true })
-      
+
       console.log('Page rendered: ', reactions)
     } else {
       console.log('Same reactions: skipping render!')

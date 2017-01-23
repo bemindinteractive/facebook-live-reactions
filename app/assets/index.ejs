@@ -83,7 +83,7 @@
                   </g>
                   <text id="0-copy" font-family="FaktSoftPro-SemiBold, Fakt Soft Pro" font-size="32" font-weight="500" fill="#FEFAF2">
                       <tspan x="15" y="88">
-                        <% if(reactions['LIKE']){ %>
+                        <% if(reactions && reactions['LIKE']){ %>
                            <%= reactions['LIKE'].count %>
                          <% } else{ %>
                            0
@@ -98,7 +98,7 @@
                   </g>
                   <text id="0" font-family="FaktSoftPro-SemiBold, Fakt Soft Pro" font-size="32" font-weight="500" fill="#FEFAF2">
                       <tspan x="15" y="88">
-                        <% if(reactions['LOVE']){ %>
+                        <% if(reactions && reactions['LOVE']){ %>
                            <%= reactions['LOVE'].count %>
                          <% } else{ %>
                            0

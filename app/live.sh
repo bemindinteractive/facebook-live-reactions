@@ -1,10 +1,3 @@
-RTMP_SERVER=$1
-
-if ! [[ -n "$RTMP_SERVER" ]]; then
-  echo "You need to pass the RTMP_SERVER address (as string)"
-  exit 1
-fi
-
 ffmpeg \
 -re -y \
 -loop 1 \
@@ -23,4 +16,4 @@ ffmpeg \
 -f flv \
 -strict \
 -2 \
-$RTMP_SERVER
+$1

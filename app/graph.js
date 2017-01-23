@@ -26,8 +26,7 @@ exports.getGraphData = async () => {
 
     if(reactions.error) {
       if(reactions.error.message) {
-        throw new Error(reactions.error.message)
-        process.exit()
+        console.log(reactions.error.message)
       }
     }
 

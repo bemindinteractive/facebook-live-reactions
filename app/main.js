@@ -8,8 +8,6 @@ const getGraphData = require('./graph.js').getGraphData
 const templateString = jetpack.read(path.join(__dirname, 'assets', 'index.ejs'))
 let reactionsCache = {}
 
-
-
 async function main() {
   try {
     const reactions = await getGraphData()

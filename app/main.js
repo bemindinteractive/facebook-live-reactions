@@ -5,25 +5,31 @@ const phantom = require('phantom')
 const ejs = require('ejs')
 
 const getGraphData = require('./graph.js').getGraphData
+const templateString = jetpack.read(path.join(__dirname, 'assets', 'index.ejs'))
 let reactionsCache = {}
+
+
 
 async function main() {
   try {
     const reactions = await getGraphData()
 
     if(JSON.stringify(reactions) !== JSON.stringify(reactionsCache)) {
-      reactionsCache = reactions
-
       const instance = await phantom.create()
       const page = await instance.createPage()
-      const templateString = await jetpack.readAsync(path.join(__dirname, 'assets', 'index.ejs'))
-      const template = ejs.render(templateString, {reactions: reactions})
+      const template = await ejs.render(templateString, {reactions: reactions})
 
       page.property('content', template)
-      await page.render('output.tmp.jpeg', { format: 'jpeg' })
-      await jetpack.moveAsync('output.tmp.jpeg', 'output.jpeg', { overwrite: true })
 
-      console.log('Page rendered: ', reactions)
+      const pageRendered = await page.render('output.tmp.jpeg')
+      if(pageRendered) {
+        console.log('Page rendered: ', reactions)
+        await jetpack.moveAsync('output.tmp.jpeg', 'output.jpeg', { overwrite: true })
+        reactionsCache = reactions
+        console.log('Page sent to streamer.')
+      } else {
+        console.log('Error: page failed to render.')
+      }
     } else {
       console.log('Same reactions: skipping render!')
     }

@@ -25,6 +25,7 @@ async function main() {
         await jetpack.moveAsync('output.tmp.jpeg', 'output.jpeg', { overwrite: true })
         reactionsCache = reactions
         console.log('Page sent to streamer.')
+        instance.exit()
       } else {
         console.log('Error: page failed to render.')
       }
